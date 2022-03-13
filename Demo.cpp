@@ -2,7 +2,7 @@
  * Demo program for mat exercise.
  * 
  * Author: Idan Kaminetsky
- * Since : 2022-01
+ * Since : 2022-03
  */
 
 #include "mat.hpp"
@@ -61,19 +61,22 @@ int main() {
 	 	cout << "   caught exception: " << ex.what() << endl << endl;
 	}
 
-	cout  << "Now it is your turn to enter inputs!" << endl;
+	
 	char flag;
 	char symbol1;
 	char symbol2;
 	int length;
 	int width;
+
+	cout  << "Now it is your turn to enter inputs!" << endl;
 	cout  << "Do you want to enter (more) inputs? [Y/N]" << endl;
+
 	cin >> flag;
 	while(flag != 'N'){
 
-		cout << "enter number of rows:";
-		cin >> length;
 		cout << "enter number of columns:";
+		cin >> length;
+		cout << "enter number of rows:";
 		cin >> width;
 		cout << "enter first symbol (char):";
 		cin >> symbol1;
@@ -92,5 +95,4 @@ int main() {
 	}
 
 	cout  << "Thank you! have a nice day!" << endl;
-	
 }
