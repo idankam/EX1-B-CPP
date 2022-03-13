@@ -1,5 +1,6 @@
 #include<iostream>
 #include<string>
+#include<vector>
 #include"mat.hpp"
 
 using namespace std;
@@ -27,17 +28,30 @@ namespace ariel {
             throw std::invalid_argument("Illegal input at symbol 2, can't be a space or something similar.");
         }
 
+        if(symbol_1 > up_limit || symbol_1 < down_limit || symbol_2 > up_limit || symbol_2 < down_limit ){
+            throw std::invalid_argument("Illegal input - char must be between 33 to 126 in ASCII table");
+        }
+
+
         // make matrix with the by given size:
-        int rows = mat_breadth, cols = mat_length;
-        char** matrix = new char*[rows];
-        for (int i = 0; i < rows; ++i)
-            matrix[i] = new char[cols];
+        int rows = mat_breadth;
+        int cols = mat_length;
+
+        vector<vector<char>> matrix(rows, vector<char> (cols, 0));
+
+
+        // char** matrix = new char*[rows];
+        // for (int i = 0; i < rows; ++i)
+        //     matrix[i] = new char[cols];
         
         // starting symbol (will change every iteration):
         char symbol = symbol_1;
 
         // starting values for iterate:
-        int first_row = 0, last_row = rows-1, first_col = 0, last_col = cols-1;
+        int first_row = 0;
+        int last_row = rows-1;
+        int first_col = 0;
+        int last_col = cols-1;
 
         // In each iteration we will fill the next frame with the appropriate symbol.
         // The run ends when the pointers of the rows or columns pass each other:
@@ -65,13 +79,18 @@ namespace ariel {
 
             // update values for next iteration
             first_row++; last_row--; first_col++; last_col--;
-            if (symbol_1 == symbol) symbol = symbol_2;
-            else symbol = symbol_1;
+            if (symbol_1 == symbol){
+                symbol = symbol_2;
+            }
+            else {
+                symbol = symbol_1;
+            }
+
             
         }
         
         // "print" the matrix to string variable:
-        std:string answer = "";
+        std:string answer;
         for (size_t i = 0; i < rows; i++)
         {
             for (size_t j = 0; j < cols; j++)
@@ -79,13 +98,15 @@ namespace ariel {
                 answer += matrix[i][j];
             }
             // add \n if there will be next row:
-            if (i+1 < rows) answer += "\n";  
+            if (i+1 < rows){
+                answer += "\n";  
+            }
         }
 
-        // free the matrix memory:
-        for (int i = 0; i < rows; ++i)
-            delete [] matrix[i];
-        delete [] matrix;
+        // // free the matrix memory:
+        // for (int i = 0; i < rows; ++i)
+        //     delete [] matrix[i];
+        // delete [] matrix;
 
         return answer;
     };
