@@ -38,11 +38,6 @@ namespace ariel {
         int cols = mat_length;
 
         vector<vector<char>> matrix(rows, vector<char> (cols, 0));
-
-
-        // char** matrix = new char*[rows];
-        // for (int i = 0; i < rows; ++i)
-        //     matrix[i] = new char[cols];
         
         // starting symbol (will change every iteration):
         char symbol = symbol_1;
@@ -85,8 +80,6 @@ namespace ariel {
             else {
                 symbol = symbol_1;
             }
-
-            
         }
         
         // "print" the matrix to string variable:
@@ -102,11 +95,6 @@ namespace ariel {
                 answer += "\n";  
             }
         }
-
-        // // free the matrix memory:
-        // for (int i = 0; i < rows; ++i)
-        //     delete [] matrix[i];
-        // delete [] matrix;
 
         return answer;
     };
